@@ -38,6 +38,19 @@ app.get('/listings',async(req,res)=>{
     }
     })
 
+//show route
+app.get('/listings/:id',async(req,res)=>{
+    const{id} = req.params;
+    
+    try{
+     const listing = await Listing.findById(id);
+     res.render('listings/show.ejs',{listing});
+    }catch(err){
+        console.log(err);
+    }
+})
+    
+    
 
 
 
