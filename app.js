@@ -70,7 +70,30 @@ app.get('/listings/:id',async(req,res)=>{
         console.log(err);
     }
 })
+   
+
+//Get for Edit
+app.get('/listings/:id/edit',async(req,res)=>{
+    const {id} = req.params;
+      try{
+        const listing = await Listing.findById(id);
+        res.render('listings/edit.ejs',{listing});
+        console.log(listing);
+      }catch(err){
+           console.log(err);
+      }
     
+})
+
+app.put('/listings/:id',async(req,res)=>{
+    const {id} = req.params;
+    try{
+       await Listing.findByIdAndUpdate(id,{...req.body.listing},{runValidators:true});
+       res.redirect('/listings');
+    }catch(err){
+        console.log(err);
+    }
+})
 
 
  
