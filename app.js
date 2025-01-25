@@ -38,6 +38,27 @@ app.get('/listings',async(req,res)=>{
     }
     })
 
+
+//Get Req for new listing
+app.get('/listings/new',(req,res)=>{
+    res.render('listings/new.ejs');
+ })   
+
+ //post for new listing
+ app.post('/listings',async(req,res)=>{
+    const{listing} = req.body;
+    try{
+        const newListing = new Listing(listing);
+       await  newListing.save();
+       res.redirect('/listings');
+    }catch(err){
+        console.log(err);
+    }
+ })
+
+
+
+ 
 //show route
 app.get('/listings/:id',async(req,res)=>{
     const{id} = req.params;
@@ -50,6 +71,9 @@ app.get('/listings/:id',async(req,res)=>{
     }
 })
     
+
+
+ 
     
 
 
