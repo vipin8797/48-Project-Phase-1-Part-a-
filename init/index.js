@@ -1,5 +1,5 @@
+//Requiring dependencies.
 const {data} = require('./data');
-
 const mongoose = require('mongoose'); //mongoose for MongoDB
 const Listing = require('../models/listing');
 

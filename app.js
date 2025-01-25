@@ -28,23 +28,15 @@ app.get('/',(req,res)=>{
     res.send("server is working");
 })
 
-app.get('/testListing', async(req,res)=>{
-    let listing1 = new Listing({
-        title:"Beach",
-        description:"This is like Helll",
-        price:2000,
-        location:"Maldeves",
-        country:"India",
-    });
+//index route
+app.get('/listings',async(req,res)=>{
     try{
-    await listing1.save();
-    res.send("listing1 is saved in db");
+     const allListings = await Listing.find({});
+     res.render('listings/index.ejs',{allListings});
     }catch(err){
         console.log(err);
-        res.send("some error");
     }
-})
-
+    })
 
 
 
