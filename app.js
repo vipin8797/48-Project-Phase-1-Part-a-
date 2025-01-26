@@ -96,6 +96,16 @@ app.put('/listings/:id',async(req,res)=>{
 })
 
 
+//Delete Route
+app.delete('/listings/:id',async(req,res)=>{
+         const{id}= req.params;    
+    try{
+         await Listing.findByIdAndDelete(id);
+         res.redirect('/listings');
+        }catch(err){
+            console.log(err);
+        }
+});
  
     
 
